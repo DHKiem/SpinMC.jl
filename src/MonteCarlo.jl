@@ -189,11 +189,11 @@ function run!(mc::MonteCarlo{T}; outfile::Union{String,Nothing}=nothing) where T
                 
                 if enableMPI
                     for n in 1:commSize
-                        str *= @sprintf("\t\tsimulation %d update acceptance rate: %.2f%%\n", n - 1, allLocalAppectanceRate[n])
-                        str *= @sprintf("\t\tsimulation %d replica exchange acceptance rate : %.2f%%\n", n - 1, allReplicaExchangeAcceptanceRate[n])
+                        str *= @sprintf("\t\tsimulation %d update acceptance rate: %.3f%%\n", n - 1, allLocalAppectanceRate[n])
+                        str *= @sprintf("\t\tsimulation %d replica exchange acceptance rate : %.3f%%\n", n - 1, allReplicaExchangeAcceptanceRate[n])
                     end
                 else
-                    str *= @sprintf("\t\tupdate acceptance rate: %.2f%%\n", localUpdateAcceptanceRate)
+                    str *= @sprintf("\t\tupdate acceptance rate: %.3f%%\n", localUpdateAcceptanceRate)
                 end
                 str *= @sprintf("\n")
                 print(str)
