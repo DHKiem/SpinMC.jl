@@ -3,6 +3,7 @@ mutable struct Lattice{D,N}
     length::Int #Number of sites N_sites
     unitcell::UnitCell{D}
     sitePositions::Vector{NTuple{D,Float64}}
+    siteMoments::Vector{Float64}
 
     spins::Matrix{Float64} #3*N_sites matrix containing the spin configuration
 
@@ -52,6 +53,7 @@ function Lattice(uc::UnitCell{D}, L::NTuple{D,Int}) where D
     lattice.size = L
     lattice.length = prod(L) * length(uc.basis)
     lattice.unitcell = uc
+    lattice.siteMoments = repeat(uc.moment, prod(L))
 
     #generate linear representation of lattice sites to assign integer site IDs
     ##Enumeration sequence is (a1, a2, ..., b) in row-major fashion

@@ -279,3 +279,12 @@ ys = [0.0, 2.0pi/sqrt(3.0), 2.0pi/sqrt(3.0), 0.0, -2.0pi/sqrt(3.0), -2.0pi/sqrt(
 plot!(xs, ys, label="Extended BZ")
 ```
 ![](doc/src/assets/plot_structurefactor.png)
+
+
+# patch for moment
+If you want to consider site-dependent moment,
+```
+moment = 1.2
+b = addBasisSite!(uc, (0.0, 0.0, 0.0), moment)
+```
+It will be applied when calculating magnetization. 

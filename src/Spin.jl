@@ -62,7 +62,7 @@ end
 function getMagnetization(lattice::Lattice{D,N}) where {D,N}
     mx, my, mz = 0.0, 0.0, 0.0
     for i in 1:length(lattice)
-        spin = getSpin(lattice, i)
+        spin = getSpin(lattice, i) .* lattice.siteMoments[i]
         mx += spin[1]
         my += spin[2]
         mz += spin[3]

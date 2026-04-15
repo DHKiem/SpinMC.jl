@@ -4,21 +4,21 @@ a1 = (1.0, 0.0, 0.0)
 a2 = (0.0, 1.0, 0.0)
 a3 = (0.0, 0.0, 1.0)
 uc = UnitCell(a1,a2,a3)
-
-b = addBasisSite!(uc, (0.0, 0.0, 0.0))
+moment = 1.2
+b = addBasisSite!(uc, (0.0, 0.0, 0.0), moment)
 M = [-1.0 0.0 0.0; 0.0 -1.0 0.0; 0.0 0.0 -1.0]
 addInteraction!(uc, b, b, M, (1, 0, 0))
 addInteraction!(uc, b, b, M, (0, 1, 0))
 addInteraction!(uc, b, b, M, (0, 0, 1))
 
-L = (8, 8, 8)
+L = (4, 4, 4)
 lattice = Lattice(uc, L)
 thermalizationSweeps = 10000
 measurementSweeps = 100000
 
 tmin = 0.1
 tmax = 10.0
-N = 32
+N = 10
 temperature = zeros(N)
 heat = zeros(N)
 dheat = zeros(N)
@@ -44,4 +44,5 @@ end
 
 using Plots
 display(plot(temperature, heat, yerror=dheat, xaxis=:log, yrange=(0.0,2.5), xrange=(0.1,10.0), xlabel="temperature", ylabel="specific heat", label="8*8*8 cubic lattice"))
-display(plot(temperature, magnetization, yerror=dmagnetization, xaxis=:log, yrange=(0.0,1.0), xrange=(0.1,10.0), xlabel="temperature", ylabel="magnetization", label="8*8*8 cubic lattice"))
+#display(plot(temperature, magnetization, yerror=dmagnetization, xaxis=:log, yrange=(0.0,1.0), xrange=(0.1,10.0), xlabel="temperature", ylabel="magnetization", label="8*8*8 cubic lattice"))
+display(plot(temperature, magnetization, yerror=dmagnetization, xaxis=:log, xrange=(0.1,10.0), xlabel="temperature", ylabel="magnetization", label="8*8*8 cubic lattice"))
